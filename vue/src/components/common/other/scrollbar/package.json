@@ -1,0 +1,49 @@
+{
+  "name": "@thunisoft/vcc-scrollbar",
+  "version": "1.4.1",
+  "description": "vue.js vcc-scrollbar",
+  "main": "dist/static/vcc-scrollbar.js",
+  "scripts": {},
+  "publishConfig": {
+    "registry": "http://npm.thunisoft.com"
+  },
+  "homepage": "http://npm.thunisoft.com/-/web/detail/@thunisoft/vcc-scrollbar",
+  "repository": {
+    "type": "git",
+    "url": "http://open.thunisoft.com/vcc-pdf-cli/vcc-component-wuwg"
+  },
+  "bugs": {
+    "url": "http://fd.thunisoft.com"
+  },
+  "contributors": [
+    {
+      "name": "wuwg",
+      "email": "wuwg@thunisoft.com",
+      "url": "http://wuweigang.com"
+    }
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+
+  },
+  "peerDependencies": {
+    "vue": "^2.6.10"
+  },
+  "engines": {
+    "node": ">= 8.11.0",
+    "npm": ">= 5.6.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "keywords": [
+    "vue.js",
+    "vcc-scrollbar",
+    "scrollbar"
+  ],
+  "author": "wuwg",
+  "license": "MIT"
+}

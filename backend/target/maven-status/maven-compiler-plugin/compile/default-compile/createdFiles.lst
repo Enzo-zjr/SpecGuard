@@ -1,0 +1,9 @@
+com\specguard\entity\Project.class
+com\specguard\entity\Document.class
+com\specguard\service\LLMService.class
+com\specguard\service\ReviewService.class
+com\specguard\SpecGuardApplication.class
+com\specguard\entity\SpecSet.class
+com\specguard\entity\ReviewReport.class
+com\specguard\repository\ProjectRepository.class
+com\specguard\service\impl\OpenAiLLMService.class

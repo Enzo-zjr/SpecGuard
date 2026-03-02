@@ -1,0 +1,131 @@
+/**
+ *@author wuwg
+ *@version 1.0.1
+ *@createTime   2019/09/09
+ *@updateTime   2019/09/11
+ *@description  滚动条组件的less组件
+ */
+@css-prefix: fd-;
+// 公用的css
+@css-prefix-scroll: ~"@{css-prefix}scroll";
+@css-prefix-scroll-track-h: ~"@{css-prefix}scroll-track-h";
+@css-prefix-scroll-track-v: ~"@{css-prefix}scroll-track-v";
+@css-prefix-scroll-bar: ~"@{css-prefix}scroll-bar";
+@css-prefix-scroll-area: ~"@{css-prefix}scroll-area";
+@css-prefix-scroll-content: ~"@{css-prefix}scroll-content";
+@css-prefix-scrollbar-transition: ~"@{css-prefix}scrollbar-transition";
+// 过渡动画
+.@{css-prefix-scrollbar-transition} {
+    // 增加过度动画会导致性能降低 2018-12-21 wuwg
+    //transition: transform 0.4s ease-in, top 0.4s ease-in;
+}
+
+/**
+* 垂直滚动条
+* 记住容器必须指定容器高（！important） width:400px;height:300px;
+*/
+.@{css-prefix-scroll} {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    // 划过和正常显示
+    &:hover,
+    &.show {
+        .@{css-prefix-scroll-track-h},
+        .@{css-prefix-scroll-track-v} {
+            opacity: 1;
+        }
+    }
+
+    // 【horizontal  and   vertical scrollbar track】
+    .@{css-prefix-scroll-track-h}, .@{css-prefix-scroll-track-v} {
+        position: absolute;
+        z-index: 2;
+        opacity: 0;
+        border-radius: 5px;
+        background-color: #f1f1f1;
+        transition: opacity 0.2s ease-in;
+        // scrollbar
+        .@{css-prefix-scroll-bar} {
+            position: absolute;
+            border-radius: 5px;
+            cursor: default;
+            transition: background-color 0.1s 0s linear;
+            background-color: #c1c1c1;
+            // hover
+            &:hover {
+                background-color: #a6a6a6;
+            }
+
+            // presss
+            &.pressed, &.pressed:hover {
+                background-color: #999;
+                //注意在按下的时候一定不要有动画，会影响性能
+                transition: none;
+            }
+        }
+    }
+
+    // 【horizontal scrollbar track】
+    .@{css-prefix-scroll-track-h} {
+        left: 1%;
+        bottom: 2px;
+        width: 98%;
+        height: 6px;
+        // horizontal scrollbar
+        .@{css-prefix-scroll-bar} {
+            height: 100%;
+        }
+        // 滚动条按下时的样式
+        &.pressed {
+            height: 14px;
+            // 滚动条的样式
+            .@{css-prefix-scroll-bar} {
+                border-radius: 7px;
+            }
+        }
+    }
+
+    // 【vertical scrollbar track】
+    .@{css-prefix-scroll-track-v} {
+        top: 1%;
+        right: 2px;
+        width: 8px;
+        height: 98%;
+        // vertical scrollbar
+        .@{css-prefix-scroll-bar} {
+            width: 100%;
+        }
+        // 滚动条按下时的样式
+        &.pressed {
+            width: 14px;
+            // 滚动条的样式
+            .@{css-prefix-scroll-bar} {
+                border-radius: 7px;
+            }
+        }
+    }
+
+    // 【scrollbar contain】 （area）
+    .@{css-prefix-scroll-area} {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        // 关键属性， 容器强制出现滚动条
+        overflow: scroll;
+        // webkit内核浏览器， 直接隐藏滚动条， 现在发现只有 webkit内核浏览器支持，如：chrome ，safari， opera
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+    }
+
+    // 【scroll content contain】
+    .@{css-prefix-scroll-content} {
+        display: block;
+        // 用户可以自己定义内容容器的宽
+        // min-width: 1000px;
+        // text-align: left;
+    }
+}

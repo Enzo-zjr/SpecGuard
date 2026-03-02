@@ -1,0 +1,159 @@
+// 手风琴的方法
+.slide-motion(@className, @keyframeName) {
+    // 公用的方法
+    .make-motion(@className, @keyframeName);
+
+    // 自己的方法
+    .@{className}-enter-active,
+    .@{className}-appear {
+        opacity: 0;
+        animation-timing-function: ease-in-out;
+    }
+
+    .@{className}-leave-active {
+        animation-timing-function: ease-in-out;
+    }
+}
+
+// 方法调用
+.slide-motion(transition-drop, transitionDrop);
+.slide-motion(slide-up, slideUp);
+.slide-motion(slide-down, slideDown);
+.slide-motion(slide-left, slideLeft);
+.slide-motion(slide-right, slideRight);
+
+@keyframes transitionDropIn {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes transitionDropOut {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scaleY(0.8);
+    }
+}
+
+@keyframes slideUpIn {
+    0% {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: scaleY(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes slideUpOut {
+    0% {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: scaleY(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: scaleY(0.8);
+    }
+}
+
+@keyframes slideDownIn {
+    0% {
+        opacity: 0;
+        transform-origin: 100% 100%;
+        transform: scaleY(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform-origin: 100% 100%;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes slideDownOut {
+    0% {
+        opacity: 1;
+        transform-origin: 100% 100%;
+        transform: scaleY(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform-origin: 100% 100%;
+        transform: scaleY(0.8);
+    }
+}
+
+@keyframes slideLeftIn {
+    0% {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: scaleX(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes slideLeftOut {
+    0% {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: scaleX(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: scaleX(0.8);
+    }
+}
+
+@keyframes slideRightIn {
+    0% {
+        opacity: 0;
+        transform-origin: 100% 0;
+        transform: scaleX(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform-origin: 100% 0;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes slideRightOut {
+    0% {
+        opacity: 1;
+        transform-origin: 100% 0;
+        transform: scaleX(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform-origin: 100% 0;
+        transform: scaleX(0.8);
+    }
+}

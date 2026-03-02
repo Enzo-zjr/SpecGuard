@@ -1,0 +1,176 @@
+// 移动的方法
+.move-motion(@className, @keyframeName) {
+    // 公用的方法
+    .make-motion(@className, @keyframeName);
+
+    // 自己的方法
+    .@{className}-enter-active, .@{className}-appear {
+        opacity: 0;
+        animation-timing-function: ease-in-out;
+    }
+
+    .@{className}-leave-active {
+        animation-timing-function: ease-in-out;
+    }
+}
+
+// 方法调用
+.move-motion(move-up, moveUp);
+.move-motion(move-down, moveDown);
+.move-motion(move-left, moveLeft);
+.move-motion(move-right, moveRight);
+
+@keyframes moveDownIn {
+    0% {
+        transform-origin: 0 0;
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform-origin: 0 0;
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes moveDownOut {
+    0% {
+        transform-origin: 0 0;
+        transform: translateY(0%);
+        opacity: 1;
+    }
+
+    100% {
+        transform-origin: 0 0;
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes moveLeftIn {
+    0% {
+        transform-origin: 0 0;
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform-origin: 0 0;
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes moveLeftOut {
+    0% {
+        transform-origin: 0 0;
+        transform: translateX(0%);
+        opacity: 1;
+    }
+
+    100% {
+        transform-origin: 0 0;
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes moveRightIn {
+    0% {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateX(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes moveRightOut {
+    0% {
+        transform-origin: 0 0;
+        transform: translateX(0%);
+        opacity: 1;
+    }
+
+    100% {
+        transform-origin: 0 0;
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes moveUpIn {
+    0% {
+        transform-origin: 0 0;
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform-origin: 0 0;
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes moveUpOut {
+    0% {
+        transform-origin: 0 0;
+        transform: translateY(0%);
+        opacity: 1;
+    }
+
+    100% {
+        transform-origin: 0 0;
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+.move-motion(move-notice, moveNotice);
+
+
+@keyframes moveNoticeIn {
+    0% {
+        opacity: 0;
+        transform-origin: 0 0;
+        transform: translateX(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform-origin: 0 0;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes moveNoticeOut {
+    0% {
+        transform-origin: 0 0;
+        transform: translateX(0%);
+        opacity: 1;
+    }
+
+    70% {
+        transform-origin: 0 0;
+        transform: translateX(100%);
+        height: auto;
+        // padding: @notice-padding;
+        // margin-bottom: @notice-margin-bottom;
+        opacity: 0;
+    }
+
+    100% {
+        transform-origin: 0 0;
+        transform: translateX(100%);
+        height: 0;
+        padding: 0;
+        margin-bottom: 0;
+        opacity: 0;
+    }
+}

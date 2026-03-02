@@ -1,0 +1,39 @@
+// 渐隐的方法
+.fade-motion(@className, @keyframeName) {
+    // 公用的方法
+    .make-motion(@className, @keyframeName);
+
+    // 自己的方法
+    .@{className}-enter-active, .@{className}-appear {
+        opacity: 0;
+        animation-timing-function: linear;
+    }
+
+    .@{className}-leave-active {
+        animation-timing-function: linear;
+    }
+}
+
+// 方法调用
+.fade-motion(fade, fade);
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+

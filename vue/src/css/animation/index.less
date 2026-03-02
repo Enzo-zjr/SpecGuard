@@ -1,0 +1,37 @@
+/**
+ * @author wuwg
+ * @version 1.0.1
+ * @createTime   2019/08/25
+ * @updateTime   2019/08/25
+ * @description  所有的动画less，所有项目通用
+ */
+@import "./fade.less";
+@import "./move.less";
+@import "./rotate.less";
+@import "./ease.less";
+@import "./slide.less";
+
+// 公用的方法
+.motion-common() {
+    animation-duration: @animation-time;
+    animation-fill-mode: both;
+}
+
+// 做动画的方法
+.make-motion(@className, @keyframeName) {
+    .@{className}-enter-active,
+    .@{className}-appear {
+        .motion-common();
+
+        animation-name: ~"@{keyframeName}In";
+        animation-play-state: running;
+    }
+
+    .@{className}-leave-active {
+        .motion-common();
+
+        animation-play-state: paused;
+        animation-name: ~"@{keyframeName}Out";
+    }
+}
+

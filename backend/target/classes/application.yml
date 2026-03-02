@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: specguard-backend
+  datasource:
+    url: jdbc:postgresql://ep-rough-sunset-a1nlgpmf-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channelBinding=require
+    username: neondb_owner
+    password: npg_2JNHgRcLbyk1
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  ai-service:
+    url: ${AI_SERVICE_URL:http://localhost:8000}
+server:
+  port: 8088
+logging:
+  level:
+    com.specguard: DEBUG

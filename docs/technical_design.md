@@ -52,10 +52,15 @@ erDiagram
 - `POST /api/v1/spec-sets/{id}/documents`: 上传并索引文档
 - `GET /api/v1/projects/{id}/specs`: 获取项目关联的所有规范
 
-### 2.2 代码评审
-- `POST /api/v1/reviews`: 提交代码评审
-    - **请求体**: `{ projectId: long, code: string }`
-    - **响应**: 完整的评审报告对象，包含引用条款和修复建议。
+### 2.2 内部服务通信 (Java -> Python)
+Java 后端通过 `WebClient` 调用 Python Workflow Engine 的 API。
+- `POST /workflow/review`: 触发完整的代码评审工作流。
+    - **请求**: `{ projectId: long, code: string }`
+    - **处理**: Python 端负责检索向量库、组装 Prompt、调用 LLM。
+    - **响应**: 结构化的评审建议 JSON。
+
+### 2.3 知识库管理
+- `POST /api/v1/spec-sets/{id}/documents`: Java 接收文件并存储至 OSS，随后通知 Python 端进行异步切分与向量化。
 
 ## 3. RAG 详细逻辑与 Prompt 设计
 
@@ -91,7 +96,21 @@ erDiagram
 }
 ```
 
-## 4. 安全与性能优化
+## 4. AI Workflow Engine (Python)
+作为系统的“大脑”，Python 端不再仅仅是简单的 API 包装，而是负责复杂的逻辑编排。
+
+### 4.1 工作流编排 (Workflow Orchestration)
+使用 **LangGraph** 或状态机模式定义评审流：
+1. **Input Analysis**: 分析代码语言、长度和上下文需求。
+2. **Dynamic Retrieval**: 根据分析结果，从向量库中多轮检索相关规范。
+3. **Reasoning & Review**: 调用 LLM 进行深度评审。
+4. **Self-Correction**: (Edge Case) 若生成格式错误，反向提示 LLM 修复 JSON。
+
+### 4.2 为什么选择 Python 编写工作流？
+- **生态优势**: LangChain/LangGraph 提供了极其成熟的“智能体 (Agent)”和“长链任务”管理工具。
+- **灵活性**: 复杂的 RAG 涉及多轮检索、重排序 (Rerank) 和条件判断，Python 的语法表达力更适合描述这些非线性逻辑。
+
+## 5. 安全与性能优化
 - **鉴权**: 使用 JWT 进行 API 鉴权。
 - **异步处理**: 文档向量索引与代码评审均采用异步队列处理，提升用户体验。
 - **缓存**: 对重复代码片段的评审结果进行 Redis 缓存。
