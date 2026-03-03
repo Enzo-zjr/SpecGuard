@@ -29,7 +29,7 @@ graph TD
 | **后端 (AI)** | Python 3.9+, FastAPI, LangGraph | 专门负责复杂的 AI 工作流编排（如 RAG、多步代码分析） |
 | **数据库** | PostgreSQL | 存储用户信息、项目、审核历史等结构化数据 |
 | **向量数据库** | ChromaDB | 存储规范文档的向量索引，支持语义检索 |
-| **AI 模型** | DeepSeek / GPT-4o | 强大的代码理解与规范对齐能力 |
+| **AI 模型** | DeepSeek (deepseek-chat) | 强大的代码理解与规范对齐能力，极高性价比 |
 | **部署** | Docker, Docker Compose | 简化环境安装与一致性保障 |
 
 ## 3. 核心业务流程

@@ -1,8 +1,19 @@
 fastapi
 uvicorn
+python-multipart
+pydantic-settings
+
+# LangChain and LLM
 langchain
 langchain-community
 langchain-openai
-chromadb
-python-multipart
-pydantic-settings
+langchain-text-splitters
+
+# Vector Database (PostgreSQL + pgvector)
+psycopg2-binary
+pgvector
+sqlalchemy
+
+# Document parsing
+pypdf
+python-docx
